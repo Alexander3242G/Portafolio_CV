@@ -1,0 +1,936 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.contactos-enlaces{
+    display: flex;
+    flex-direction: column;
+    row-gap: 2em;
+    width: 100%;
+}
+#encabezado-movil{
+    display: none;
+}
+.label-contacto{
+    font-weight: 600;
+    font-size: 1.4em;
+    color: #001C30;
+}
+a{
+    text-decoration: none;
+    height: min-content;
+}
+ul{
+    list-style: none;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+}
+p{
+    color: #3D3B40;
+}
+.titulo-seccion{
+    font-size: 2em;
+}
+.contenido-cv{
+    width: 100%;
+    height: 100%;
+}
+.seccion-cv{
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    border-bottom: 0.5em solid #001C30;
+    box-sizing: border-box;
+}
+.subtitulo{
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1em;
+    font-weight: 900;
+}
+.subtitulo::after{
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -7px;
+    width: 50%;
+    height: 0.2em;
+    border-radius: 5px;
+    background-color: #176B87;
+}
+
+.colorear-azul{
+    color: #4E4FEB;
+    font-weight: bold;
+}
+.descripcion-proyecto{
+    flex: 3;
+    margin-top: 0.5em;
+}
+.boton-proyecto{
+    flex: 1;
+}
+/*ICONOS*/
+
+/*TELÉFONO*/
+.icono-telefono{
+    color: #001C30;
+}
+
+/*MENSAJE*/
+.icono-mensaje{
+    color: #001C30;
+}
+
+/*ICONO REDES*/
+.icono-redes{
+    color: #001C30;
+    font-size: 2.5em;
+    transition: 0.5s ease-in-out;
+}
+
+.icono-redes:hover{
+    color: #176B87;
+}
+/*Estilos del modal*/
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 101;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 80%;
+    max-height: 80%;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+}
+/*Secciones del cv*/
+/*Este es el body de toda la página*/
+#contenedor-body{
+    max-width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    position: relative;
+}
+/*Este es el encabezado del cv*/
+#encabezado-cv{
+    height: 100vh;
+    background-color: #001C30;
+    width: 20%;
+    z-index: 10;
+}
+#contenido-encabezado-cv{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#linea-ruta{
+    width: 40%;
+}
+#ruta-portafolio{
+    flex: 2;
+    display: flex;
+    width: 100%;
+}
+#ruta-portafolio ul{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#ruta-portafolio a{
+    position: relative;
+    color: white;
+    text-decoration: none;
+    transition: color 0.5s ease;
+    font-weight: 900;
+}
+#ruta-portafolio a::after{
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    height: 0.2em;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.4s ease-in-out;
+}
+#ruta-portafolio a:hover::after{
+    transform-origin: left;
+    transform: scaleX(1);
+}
+#ruta-portafolio a:hover{
+    color: #64CCC5;
+}
+
+/*Este es el cuerpo del cv*/
+
+#cuerpo-cv{
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    width: 80%;
+    max-height: 100vh;
+    overflow: auto;
+}
+/*Este es la seccion inicio del cv*/
+#contenedor-inicio-cv{
+    height: 60%;
+}
+
+#portada-inicio-cv{
+    padding-left: 30px;
+    flex: 4;
+    display: flex;
+    max-width: 100%;
+    height: 100%;
+    background-image: url(Img/Imagen04.jpg);
+    background-size: cover;
+    background-position: center;
+}
+#contenedor-flechas-encabezado{
+    display: flex;
+    position: relative;
+    width: 50%;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 1em;
+}
+#contenedor-flechas-encabezado::after{
+    content: "";
+    display: block;
+    position: absolute;
+    inset: 7em;
+    background-image: url(Img/Lenguajes_Img/Gaa.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    animation: anim-lenguajes 1s linear 2.3s 1 normal forwards;
+}
+.flecha{
+    width: 50%;
+    height: 80%;
+    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 20% 100%, 70% 50%, 20% 0%);
+    background-color: #001c30da;
+}
+.flecha01{
+    position: relative;
+    left: 15%;
+    left: calc(15% - 1200px);
+    animation: anim-flechas 1s linear 1s 1 normal forwards, giro-flecha 0.5s linear 2s 1 normal forwards;
+}
+.flecha02{
+    position: relative;
+    left: -1200px;
+    animation: anim-flechas 1s linear 0.5s 1 normal forwards;
+}
+#contenedor-nombre-cv{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: center;
+    justify-items: center;
+}
+
+#nombre{
+    margin-bottom: 1em;
+    padding-left: 1em;
+}
+#apellido{
+    text-align: end;
+    padding-right: 1em;
+}
+.nombre-cv{
+    position: relative;
+    padding: 0.5em;
+    color: white;
+    font-size: 2em;
+    z-index: 1;
+}
+.nombre-cv::before{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.4) 10%, rgba(0,0,0,0.3) 35%, transparent 97%, transparent 0%);
+    background-color: #000000e0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+}
+
+#nombre::before{
+    animation: anim-nombre 0.7s linear 1s 1 normal forwards;
+    transition: 0.5s ease-in-out;
+}
+#apellido::before{
+    animation: anim-apellido 0.7s linear 1s 1 normal forwards;
+    transition: 0.5s ease-in-out;
+}
+#nombre:hover::before{
+    background-color: #4E4FEB;
+}
+#apellido:hover::before{
+    background-color: #068FFF;
+}
+#nombre:hover{
+    color: white;
+    transition: 0.5s ease-in-out;
+}
+#apellido:hover{
+    color: black;
+    transition: 0.5s ease-in-out;
+}
+@keyframes anim-nombre {
+    from{
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }to{
+        clip-path: polygon(100% 0, 0 10%, 0 90%, 90% 100%);
+    }
+}
+@keyframes anim-apellido {
+    from{
+        clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+    }to{
+        clip-path: polygon(100% 10%, 40% 0, 50% 100%, 100% 90%);
+    }
+}
+@keyframes giro-flecha {
+    100%{
+        clip-path: polygon(80% 0%, 30% 50%, 80% 100%, 50% 100%, 0% 50%, 50% 0);
+        transform: translateX(1120px);
+    }    
+}
+@keyframes anim-flechas {
+    100%{
+        transform: translateX(1200px);
+    }
+}
+
+@keyframes anim-lenguajes {
+    from{
+        opacity: 0;
+        transform: scale(0.5);
+    }to{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+#inicio-cv{
+    display: flex;
+    flex-direction: column;
+}
+#info-inicio-cv{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 2em 2em 1em 2em;
+    height: 40%;
+    row-gap: 1em;
+}
+#info-inicio-cv>.subtitulo::after{
+    width: 7em;
+}
+#info-inicio-cv h3{
+    font-weight: 900;
+}
+.cuerpo-inicio-cv-01, .cuerpo-inicio-cv-02{
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+.contacto-personal, .contacto-redes{
+    flex: 1 1 auto;
+    display:flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+}
+.contacto-personal a{
+    color: white;
+    padding: 0.7em 1em;
+    border-radius: 12px;
+    background-color: #176B87;
+    border: 3px solid transparent;
+    transition: 0.3s ease-in-out;
+}
+.contacto-personal a:hover{
+    background-color: #068FFF;
+    border: 3px solid #001c3084;
+}
+#descargar-cv, #boton-enviar{
+    padding: 1em;
+    border: 0.3em solid #001C30;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+}
+#descargar-cv:hover{
+    background-color: #002d4c;
+    color: white;
+}
+#pdf-cv{
+    width: 80%;
+}
+
+/*Este es la seccion sobre mi del cv*/
+#contenedor-sobre-mi-cv{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    align-items: center;
+    justify-content: stretch;
+}
+#contenedor-imagen-perfil{
+    position: relative;
+    height: 100%;
+    flex: 1;
+}
+#contenedor-imagen-perfil::before{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 50%;
+    height: 45%;
+    left: 30%;
+    top: 33%;
+    background-color: #176B87;
+    z-index: -1;
+}
+#imagen-perfil{
+    width: 50%;
+    position: absolute;
+    top: 28%;
+    left: 20%;
+    border: 1px  solid #3D3B40;
+}
+#info-sobre-mi-cv{
+    flex: 1;
+    padding: 0 5em;
+    text-align: justify;
+    line-height: 2;
+}
+/*Esta es la seccion de educacion*/
+#contenedor-educacion-cv{
+    padding: 4em;
+}
+.item-educacion{
+    display: flex;
+    padding: 1em 0 2em 0;
+}
+.info-educacion{
+    display: flex;
+    flex-direction: column;
+    flex: 5;
+}
+.entidad-educativa, .titulo-proyecto{
+    color: #002d4c;
+}
+.rango-educacion{
+    padding-top: 0.5em;
+    color: #64CCC5;
+}
+.fecha-educacion{
+    color: #176B87;
+    font-weight: bold;
+}
+.div-fecha-educacion{
+    flex: 2;
+}
+/*Parte de las habilidades de programacion y habilidades blandas*/
+#cuadriculas-habilidades-cv{
+    display: grid;
+    height: 87%;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(7em, 1fr));
+    gap: 0 9em;
+    margin-top: 0.5em;
+    align-items: center;
+    justify-items: center;
+}
+#contenedor-habilidades-cv{
+    position: relative;
+    padding: 2em 5em 3em 5em;
+    overflow: hidden;
+}
+#contenedor-habilidades-cv::before{
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(100% 0, 100% 30%, 30% 100%, 0 100%, 0 0);
+    background-color: #BFCFE7;
+    z-index: -1;
+}
+#contenedor-habilidades-cv::after{
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(100% 30%, 30% 100%, 100% 100%);
+    background-color: #176B87;
+    z-index: -1;
+}
+
+/*Medidores de habilidades*/
+.medidor{
+    position: relative;
+    width: 9em;
+    height: 9em;
+    border-radius: 50%;
+    background: conic-gradient(
+    var(--color) var(--grados),
+    #001c307a 0%
+    );
+    font-size: 1.5rem;
+}
+.medidor h2{
+    position: absolute;
+    color: white;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-weight: 500;
+    z-index: 1;
+    font-weight: 900;
+}
+.medidor h3{
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    z-index: 1;
+}
+.medidor::after{
+    content: "";
+    display: block;
+    position: absolute;
+    inset: 0.7em;
+    border-radius: 50%;
+    background-color: black;
+    transition: 0.7s ease-in-out, background-color 0.4s ease-in-out;
+    background-image: none;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: 50% 170%;
+}
+.medidor:hover::after{
+    background-color: white;
+    background-image: var(--enlace);
+    background-position: 50% 55%;
+}
+.medidor:hover h2, .medidor:hover h3{
+    opacity: 0;
+}
+
+/*Seccion de mis proyetos*/
+#contenedor-proyectos-cv{
+    padding: 2em 2.5em 1.5em 2.5em;
+}
+
+#galeria-proyectos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-around;
+    height: calc(100% - 5em);
+}
+
+.proyecto{
+    display: flex;
+    flex-direction: column;
+    width: 23%;
+    height: auto;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    border-radius: 4px;
+}
+.proyecto:hover {
+    transform: scale(1.1);
+}
+.proyecto .imagen-proyecto{
+    max-width: 100%;
+}
+.boton-proyecto{
+    margin-top: 1em;
+    padding: 1em;
+    border: none;
+    border-radius: 7px;
+    background-color: rgb(23, 107, 135);
+    color: white;
+    font-size: 0.8em;
+    transition: color, background-color 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton-proyecto:hover{
+    color: #64CCC5;
+    background-color: #002d4c;
+}
+.info-proyecto{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+}
+.info-proyecto p{
+    font-size: 0.8em;
+    text-align: justify;
+}
+
+/*Seccion de mi contacto*/
+#contenedor-contacto-cv{
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+}
+.division-contacto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 1.5em;
+    width: 50%;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: flex-start;
+    row-gap: 2em;
+}
+#contenedor-contacto-cv p{
+    text-align: center;
+}
+
+#contenedor-contacto-cv .subtitulo::after{
+    content: "";
+    display: block;
+    position: absolute;
+    left: 50%;
+    bottom: -7px;
+    width: 50%;
+    height: 0.2em;
+    border-radius: 5px;
+    background-color: #176B87;
+    transform: translateX(-50%);
+}
+#formulario-contacto{
+    flex: 9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 80%;
+    row-gap: 1em;
+}
+input[type="text"], input[type="email"]{
+    padding: 1rem;
+    border-radius: 10px;
+}
+input[type="text"]:focus, input[type="email"]:focus{
+    background-color: #EEEEEE;
+}
+#boton-enviar{
+    font-weight: bold;
+}
+
+#boton-enviar:hover{
+    background-color: #001C30;
+    color: white;
+}
+#caja-comentario{
+    border-radius: 10px;
+    resize: none;
+    padding: 1em;
+    height: 15em;
+    line-height: 2;
+}
+@media only screen and (min-width: 1000px){
+    .seccion-cv{
+        scroll-snap-align: start;
+    }
+    #cuerpo-cv{
+        scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
+    }
+}
+@media only screen and (max-width: 750px){
+    #contenedor-body{
+        display: block;
+    }
+
+    /*Este es el encabezado del cv MOVIL*/
+    #encabezado-movil{
+        position: fixed;
+        right: 0.5em;
+        top: 0.5em;
+        width: 4em;
+        height: 4em;
+        background-color: #001C30;
+        z-index: 12;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    #encabezado-movil>span{
+        width: 60%;
+        height: 0.4em;
+        border-radius: 0.5em;
+        background-color: white;
+    }
+
+    #encabezado-cv{
+        display: none;
+        position: absolute;
+        width: 100%;
+    }
+
+    #encabezado-cv.show{
+        display: block;
+    }
+    /*Este es el cuerpo del cv*/
+
+    #cuerpo-cv{
+        width: 100%;
+    }
+    /*Este es la seccion inicio del cv*/
+
+    #contenedor-inicio-cv{
+        height: 60vh;
+    }
+    #portada-inicio-cv{
+        padding: 4.5em 1em 0 1em;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    #contenedor-nombre-cv{
+        width: 100%;
+    }
+
+    .nombre-cv{
+        position: relative;
+        padding: 0.5em;
+        color: white;
+        font-size: 1.7em;
+        z-index: 1;
+    }
+
+    #contenedor-flechas-encabezado{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0;
+    }
+
+    @keyframes giro-flecha {
+        100%{
+            clip-path: polygon(80% 0%, 30% 50%, 80% 100%, 50% 100%, 0% 50%, 50% 0);
+            transform: translateX(1142px);
+        }    
+    }
+    
+    #info-inicio-cv{
+        padding: 2em 1em;
+        height: 40vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        row-gap: 1em;
+    }
+
+    .cuerpo-inicio-cv-01{
+        padding-top: 0;
+        flex-direction: column;
+        row-gap: 2em;
+    }
+    .contacto-personal a {
+        font-size: 1em;
+    }
+
+    /*Este es la seccion sobre mi del cv*/
+
+    #contenedor-sobre-mi-cv{
+        flex-direction: column-reverse;
+    }
+    #contenedor-imagen-perfil{
+        width: 100%;
+    }
+    #contenedor-imagen-perfil::before{
+        height: 64%;
+        top: 20%;
+    }
+    #imagen-perfil{
+        top: 45%;
+        left: 45%;
+        transform: translate(-50%,-50%);
+    }
+    #info-sobre-mi-cv{
+        padding: 1.5em 2em;
+        line-height: 1.7;
+    }
+
+    /*Esta es la seccion de educacion*/
+
+    .item-educacion{
+        column-gap: 0.5em;
+    }
+    #contenedor-educacion-cv{
+        padding: 1.4em 1em 1.4em 1.4em;
+    }
+
+    .div-fecha-educacion{
+        display: flex;
+        justify-content: flex-end;
+        flex: 2.5;
+    }
+
+    /*Seccion de mis proyetos*/
+
+    #contenedor-proyectos-cv{
+        padding: 2em 1em 0.5em 1em;
+    }
+    
+    #galeria-proyectos{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-content: space-around;
+        height: calc(100% - 5em);
+    }
+    
+    .proyecto{
+        width: 48%;
+    }
+    
+    .boton-proyecto{
+        margin-top: 0.5em;
+        max-height: 2.5em;
+        min-height: 2.5em;
+        padding: 0;
+    }
+
+    /*Seccion de mi contacto*/
+
+    #contenedor-contacto-cv{
+        width: 100%;
+    }
+    #formulario-contacto{
+        flex: 1 1 100%;
+    }
+    #cuadriculas-habilidades-cv{
+        gap: 3em;
+    }
+    .medidor{
+        font-size: 1rem;
+    }
+    #contenedor-habilidades-cv{
+        padding: 2em;
+    }
+
+    #contenedor-contacto-cv{
+        display: flex;
+        flex-direction: column;
+        padding-top: 0em;
+    }
+    .division-contacto{
+        width: 100%;
+        row-gap: 1em;
+    }
+    #contenedor-flechas-encabezado::after{
+        inset: 5em;
+    }
+}
+
+@media only screen and (max-width: 420px){
+    body{
+        font-size: 0.9em;
+    }
+    #contenedor-habilidades-cv{
+        padding: 2em;
+    }
+    .medidor{
+        font-size: 1rem;
+    }
+}
+@media only screen and (max-width: 380px){
+    body{
+        font-size: 0.75em;
+    }
+    #info-inicio-cv{
+        padding: 2em 1em 2em 1em;
+    }
+    #contenedor-habilidades-cv{
+        padding: 2em;
+    }
+    input[type="text"], input[type="email"]{
+        padding: 0.7rem;
+        border-radius: 10px;
+    }
+    #caja-comentario{
+        height: 10em;
+    }
+    .medidor{
+        font-size: 0.75rem;
+    }
+    #contenedor-flechas-encabezado::after {
+        inset: 3em;
+    }
+}
+@media only screen and (max-width: 310px){
+    body{
+        font-size: 0.63em;
+    }
+    #contenedor-habilidades-cv{
+        padding: 2em;
+    }
+    .medidor{
+        font-size: 0.8rem;
+    }
+}
